@@ -1,0 +1,10 @@
+[package]
+name = "video_watch_upload_azure"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+notify = "8.0"
+tokio = { version = "1.45", features = ["full"] }
+futures = "0.3"
+reqwest = { version = "0.12" }
