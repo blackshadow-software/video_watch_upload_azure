@@ -109,7 +109,7 @@ fn upload_video_to_azure(url: &str, path: &str) {
                 Ok(file_bytes) => {
                     let client = Client::new();
                     let response = client
-                        .put(url)
+                        .put(&url)
                         .header("x-ms-blob-type", "BlockBlob")
                         .header("Content-Type", "video/mp4")
                         .body(file_bytes)
@@ -118,7 +118,7 @@ fn upload_video_to_azure(url: &str, path: &str) {
                     match response {
                         Ok(resp) => {
                             if resp.status().is_success() {
-                                println!("File uploaded successfully: {}", path);
+                                println!("File {} is uploaded successfully to : {}", path, url);
                                 match tokio::fs::remove_file(&path).await {
                                     Ok(_) => println!("File deleted successfully: {}", path),
                                     Err(e) => eprintln!("Failed to delete file: {}", e),
